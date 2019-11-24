@@ -1,4 +1,5 @@
 env/
-*.csv
+datasets/
 .vscode/
 __pycache__/
+*.csv
