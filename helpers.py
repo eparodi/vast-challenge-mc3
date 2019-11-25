@@ -25,6 +25,9 @@ def get_mentions(df):
     words = get_word_count(df)
     return words.where(words.index.to_series().str.startswith("@")).dropna()
 
+def filter_spam(df):
+    return df.loc[~df["account"].isin(SPAM_ACCOUNTS)]
+
 SPAM_ACCOUNTS = [
     "___3333__",
     "CantonCoordon2",
