@@ -25,6 +25,21 @@ def get_mentions(df):
     words = get_word_count(df)
     return words.where(words.index.to_series().str.startswith("@")).dropna()
 
+SPAM_ACCOUNTS = [
+    "___3333__",
+    "CantonCoordon2",
+    "Cheryl_MeeksFish82",
+    "CookWhatWhen81",
+    "handle",
+    "J0rdanWantsBacon",
+    "JordanWantsBac0n",
+    "Opportunities1",
+    "Opportunities2",
+    "Syndicated4",
+    "Syndicated5",
+    "Syndicated348",
+]
+
 functions = [
     ("word_count", get_word_count),
     ("mentions", get_mentions),
