@@ -1,7 +1,8 @@
-from helpers import get_retweets, get_tweets, functions
+from helpers import get_retweets, get_tweets, functions, filter_spam, categories
 import os
 
 def generate_datasets(df):
+    df = filter_spam(df)
     retweets = df.loc[df["message"].apply(get_retweets)]
     tweets = df.loc[df["message"].apply(get_tweets)]
 
@@ -30,3 +31,9 @@ def generate_csv(datasets, path):
                 function=function[0],
             ))
             data.to_csv(filename)
+
+def get_categories(df):
+    df = filter_spam(df)
+    for category, keywords in categories.items():
+        df[category] = df["message"].str.contains('|'.join(keywords))
+    return df
